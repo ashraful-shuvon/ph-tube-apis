@@ -31,6 +31,25 @@ const loadVideos = async () => {
   }
 };
 
+const loadCatagoryVideos = async (id) => {
+  const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
+  //   console.log(url);
+
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+
+    const data = await res.json();
+
+    // console.log(data.categories);
+    displayVideos(data.category);
+  } catch (error) {
+    console.error("Error loading categories:", error);
+  }
+};
+
 const displayCatagories = (categories) => {
   const div = document.getElementById("cat-container");
 
@@ -39,7 +58,7 @@ const displayCatagories = (categories) => {
 
     const buttonContainer = document.createElement("div");
     buttonContainer.innerHTML = `
-    <button class="btn btn-sm px-5 hover:bg-red-500 hover:text-white">${cat.category}</button>
+    <button onclick = "loadCatagoryVideos(${cat.category_id})" class="btn btn-sm px-5 hover:bg-red-500 hover:text-white">${cat.category}</button>
     `;
 
     div.appendChild(buttonContainer);
@@ -48,9 +67,9 @@ const displayCatagories = (categories) => {
 
 const displayVideos = (videos) => {
   const videosContainer = document.getElementById("videos-container");
-
+  videosContainer.innerHTML = " ";
   videos.forEach((video) => {
-    console.log(video);
+    // console.log(video);
 
     const videoCard = document.createElement("div");
     videoCard.innerHTML = `
@@ -65,16 +84,16 @@ const displayVideos = (videos) => {
                 <div id="profile ">
                     <div class="avatar ">
                         <div class="w-10 rounded-full">
-                            <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
+                            <img src="${video.authors[0].profile_picture}" />
                         </div>
                     </div>
                 </div>
                 <div id="intro">
                     <h2 class="card-title">${video.title}</h2>
-                    <p class="flex text-gray-500 gap-2 text-sm items-center">${video.authors[0]} <span><img class="w-4 h-4"
+                    <p class="flex text-gray-500 gap-2 text-sm items-center">${video.authors[0].profile_name} <span><img class="w-4 h-4"
                                 src="https://img.icons8.com/?size=100&id=36872&format=png&color=228BE6" alt=""></span>
                     </p>
-                    <p class="text-gray-500 text-sm">91K views</p>
+                    <p class="text-gray-500 text-sm">${video.others.views} views</p>
                 </div>
             </div>
         </div>
@@ -82,5 +101,6 @@ const displayVideos = (videos) => {
     videosContainer.appendChild(videoCard);
   });
 };
+
 loadVideos();
 loadCatagories();
