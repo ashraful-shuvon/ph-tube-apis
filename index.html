@@ -17,17 +17,57 @@
     <header class="container mx-auto">
         <nav
             class="lg:flex lg:flex-row flex flex-col justify-center items-center lg:justify-between lg:items-center gap-4 pt-12 pb-8 border-b border-gray-300">
-            <div class="w-44 h-10">
+            <div class="logo w-44 h-10">
                 <img src="./assets/Logo.png" alt="">
             </div>
-            <div class="">
+            <div class="sort">
                 <button class="btn btn-soft px-5 py-2 hover:bg-gray-300">Sort By View</button>
             </div>
-            <div class="">
-                <button class="btn btn-outline btn-error hover:bg-red-500 px-5">Blog</button>
+            <div class="blog">
+                <button class="btn btn-outline btn-error hover:bg-red-500 hover:text-white px-5">Blog</button>
+            </div>
+        </nav>
+
+        <nav id="cat-container" class="flex gap-4 justify-center items-center py-5">
+            <div>
+                <button class="btn btn-sm px-5 hover:bg-red-500 hover:text-white">All</button>
             </div>
         </nav>
     </header>
+
+    <section class="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-7 mt-5" id="videos-container">
+        <!-- <div class="flex items-center justify-center">
+            <div class="card bg-base-100 w-80">
+                <figure class="relative">
+                    <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" />
+                    <span class="absolute bottom-5 right-5 bg-black text-white text-xs py-1 px-2 rounded-md"> 3 hours 58
+                        mins</span>
+                </figure>
+                <div class="flex gap-5 py-4">
+                    <div id="profile ">
+                        <div class="avatar ">
+                            <div class="w-10 rounded-full">
+                                <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="intro">
+                        <h2 class="card-title">Card Title</h2>
+                        <p class="flex text-gray-500 gap-2 text-sm items-center">Awlad Hossain <span><img
+                                    class="w-5 h-5"
+                                    src="https://img.icons8.com/?size=100&id=36872&format=png&color=228BE6"
+                                    alt=""></span>
+                        </p>
+                        <p class="text-gray-500 text-sm">91K views</p>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+    </section>
+
+
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>
