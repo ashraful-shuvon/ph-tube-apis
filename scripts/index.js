@@ -44,6 +44,9 @@ const loadCatagoryVideos = async (id) => {
     const data = await res.json();
 
     // console.log(data.categories);
+    const clickedButton = document.getElementById(`btn-${id}`);
+    // console.log(clickedButton);
+    clickedButton.classList.add("active");
     displayVideos(data.category);
   } catch (error) {
     console.error("Error loading categories:", error);
@@ -58,7 +61,7 @@ const displayCatagories = (categories) => {
 
     const buttonContainer = document.createElement("div");
     buttonContainer.innerHTML = `
-    <button onclick = "loadCatagoryVideos(${cat.category_id})" class="btn btn-sm px-5 hover:bg-red-500 hover:text-white">${cat.category}</button>
+    <button id="btn-${cat.category_id}" onclick = "loadCatagoryVideos(${cat.category_id})" class="btn btn-sm px-5 hover:bg-red-500 hover:text-white">${cat.category}</button>
     `;
 
     div.appendChild(buttonContainer);
@@ -68,6 +71,15 @@ const displayCatagories = (categories) => {
 const displayVideos = (videos) => {
   const videosContainer = document.getElementById("videos-container");
   videosContainer.innerHTML = " ";
+
+  if (videos.length == 0) {
+    return (videosContainer.innerHTML = `
+        <div class="col-span-4 flex flex-col justify-center items-center py-20 gap-6">
+            <img src="./assets/Icon.png" alt="">
+            <h2 class=" text-center text-3xl">Oops!! Sorry, There is no content here</h2>
+        </div>
+        `);
+  }
   videos.forEach((video) => {
     // console.log(video);
 
@@ -102,5 +114,5 @@ const displayVideos = (videos) => {
   });
 };
 
-loadVideos();
+// loadVideos();
 loadCatagories();
