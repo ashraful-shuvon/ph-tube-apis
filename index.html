@@ -37,7 +37,8 @@
 
         <nav id="cat-container" class="flex gap-4 justify-center items-center py-5">
             <div>
-                <button onclick="loadVideos()" class="btn btn-sm px-5 hover:bg-red-500 hover:text-white">All</button>
+                <button id="btn-all" onclick="loadVideos()"
+                    class="btn btn-sm px-5 hover:bg-red-500 hover:text-white">All</button>
             </div>
         </nav>
     </header>
@@ -77,8 +78,19 @@
         </div>
     </section>
 
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+    <dialog id="display_descripsion" class="modal">
+        <div class="modal-box">
+            <div id="modal-container">
+
+            </div>
+
+        </div>
+    </dialog>
 
     <script src="./scripts/index.js"></script>
+
 </body>
 
 </html>
