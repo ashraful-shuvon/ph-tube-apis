@@ -23,10 +23,10 @@ const loadCatagories = async () => {
   }
 };
 
-const loadVideos = async () => {
+const loadVideos = async (searchText = "") => {
   try {
     const res = await fetch(
-      "https://openapi.programming-hero.com/api/phero-tube/videos"
+      `https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`
     );
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status}`);
@@ -158,7 +158,7 @@ const displayDescription = (description) => {
   modalContainer.innerHTML = `
       
     <div class="flex flex-col items-center justify-center">
-        <div class="card bg-base-100 w-96 pb-10">
+        <div class="card bg-base-100 lg:w-96 pb-10">
             <figure class="relative">
                 <img class=" w-full h-40 object-cover" src="${description.thumbnail}" alt="Shoes" />
                 <span class="absolute bottom-5 right-5 bg-black text-white text-xs py-1 px-2 rounded-md"> 3 hours 58
@@ -191,5 +191,9 @@ const displayDescription = (description) => {
     </div>`;
 };
 
+document.getElementById("search-input").addEventListener("keyup", (e) => {
+  const input = e.target.value;
+  loadVideos(input);
+});
 // loadVideos();
 loadCatagories();
